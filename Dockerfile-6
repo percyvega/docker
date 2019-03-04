@@ -1,0 +1,12 @@
+FROM drupal:8.2
+
+RUN apt-get update \
+	&& apt-get install -y git \
+	&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /var/www/html/themes
+
+RUN git clone --branch 8.3-3.x -- single-branch --depth 1 \
+	https://git.drupal.org/project/bootstrap.git
+
+WORKDIR /var/www/html
